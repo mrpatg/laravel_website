@@ -18,6 +18,6 @@ Route::get('/about', function () {
     return view('pages.about');
 });
 
-Route::get('/about/{id}', function ($id) {
-    return 'This is user '. $id;
+Route::get('/about/{id}/{name}', function ($id, $name) {
+    return 'This is user '. $id .' named: '. $name;
 });
