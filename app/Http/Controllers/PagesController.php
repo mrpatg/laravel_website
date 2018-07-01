@@ -14,11 +14,13 @@ class PagesController extends Controller
 
     }
     public function about(){
-        return view('pages.about');
+        $title = 'About';
+        return view('pages.about')->with('title', $title);
 
     }
     public function services(){
-        return view('pages.services');
+        $title = 'Servicesh';
+        return view('pages.services')->with('title', $title);
 
     }
 }
