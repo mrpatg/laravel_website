@@ -17,3 +17,7 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('pages.about');
 });
+
+Route::get('/about/{id}', function ($id) {
+    return 'This is user '. $id;
+});
