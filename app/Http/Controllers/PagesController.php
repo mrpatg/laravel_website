@@ -20,7 +20,11 @@ class PagesController extends Controller
     }
     public function services(){
         $title = 'Servicesh';
-        return view('pages.services')->with('title', $title);
+        $data = array(
+            'title' => 'Services',
+            'services' => ['Web Design', 'Programmer', 'SEO']
+        );
+        return view('pages.services')->with($data);
 
     }
 }
