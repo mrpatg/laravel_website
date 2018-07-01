@@ -8,6 +8,7 @@
         <title>{{config('app.name'), 'LSAPP'}}</title>
 
     </head>
-    <body>About</h1>
+    <body>
+    <h1>About</h1>
     </body>
 </html>
