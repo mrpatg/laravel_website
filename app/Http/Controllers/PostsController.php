@@ -52,7 +52,7 @@ class PostsController extends Controller
         // get from DB
         // holy fuck that is it?
         $post = Post::find($id);
-        return view(posts.single)->with('post', $post);
+        return view(posts.single)->with('posts', $post);
     }
 
     /**
