@@ -5,7 +5,7 @@
     @if(count($posts) > 1)
         @foreach($posts as $post)
             <div class="well">
-                <h3>{{post->title}}</h3>
+                <h3>{{$post->title}}</h3>
             </div>
         @endforeach
 
