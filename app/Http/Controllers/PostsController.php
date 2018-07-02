@@ -13,7 +13,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        // Load view (folder/index.blade.php)
+        return view('posts.index');
     }
 
     /**
