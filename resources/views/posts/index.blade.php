@@ -4,7 +4,7 @@
     <h1>Posts</h1>
     @if(count($posts) > 1)
         @foreach($posts as $post)
-            <div class="card bg-faded">
+            <div class="card card-block bg-faded">
                 <h3>{{$post->title}}</h3>
             </div>
         @endforeach
