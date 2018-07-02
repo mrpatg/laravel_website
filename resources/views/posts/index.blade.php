@@ -6,6 +6,7 @@
         @foreach($posts as $post)
             <div class="card card-block bg-faded">
                 <h3>{{$post->title}}</h3>
+                <small>Written on {{$post.created_at}}</small>
             </div>
         @endforeach
 
