@@ -15,7 +15,7 @@ class PostsController extends Controller
     public function index()
     {
         // Load all info
-        return Post:all();
+        return Post::all();
         // Load view (folder/index.blade.php)
         return view('posts.index');
     }
