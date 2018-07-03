@@ -29,6 +29,7 @@ class PostsController extends Controller
         $posts = Post::all();
         
         // Load view (folder/index.blade.php)
+        $posts = Post::orderBy('created_at','desc')->get();
         return view('posts.index')->with('posts', $posts);
 
 
