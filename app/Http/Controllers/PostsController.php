@@ -14,10 +14,24 @@ class PostsController extends Controller
      */
     public function index()
     {
+        
+
+        // How to order it by title
+        //$posts = Post::orderBy('title','desc')->get();
+
+        // How to get individual record
+        //$posts = Post::where('title','First Post w/ Tinker')->get();
+
+        // Add Use at top DB to do straight mysql queries
+        // $posts = DB::select('SELECT * FROM posts');
+
         // Load all info
         $posts = Post::all();
+        
         // Load view (folder/index.blade.php)
         return view('posts.index')->with('posts', $posts);
+
+
     }
 
     /**
@@ -28,6 +42,7 @@ class PostsController extends Controller
     public function create()
     {
         //
+        return view('posts.create');
     }
 
     /**
