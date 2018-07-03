@@ -17,7 +17,7 @@
             <a class="nav-link" href="/services">Services</a>
           </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="navbar-nav ml-auto">
           <li>
             <a href="/posts/create">Create Post</a>
           </li>
