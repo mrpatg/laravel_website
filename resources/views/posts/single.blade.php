@@ -9,5 +9,5 @@
     <hr>
     <small>Written on {{$post->created_at}}</small>
     <hr>
-    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
+    <a href="/posts/{{$post->id}}/edit" class="btn btn-light">Edit</a>
 @endsection
