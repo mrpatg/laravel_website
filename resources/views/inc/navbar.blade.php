@@ -45,7 +45,7 @@
                         </form>
                     </div>
                 </li>
-                <li>
+                <li class="nav-item">
                     <a href="/posts/create">Create Post</a>
                 </li>
             @endguest
