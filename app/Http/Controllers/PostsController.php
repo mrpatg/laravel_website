@@ -7,14 +7,24 @@ use App\Post;
 
 class PostsController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {            
 
         // How to order it by title
         //$posts = Post::orderBy('title','desc')->get();
@@ -95,6 +105,11 @@ class PostsController extends Controller
     {
         // Bring in the post
         $post = Post::find($id);
+        // Check user ID for ownership
+
+        if(auth()->user()->id !== $post->user_id){
+            return redirect('/posts')->with('error', 'That doest\'t belong to you');
+        }
         return view('posts.edit')->with('post', $post);
     }
 
@@ -114,6 +129,11 @@ class PostsController extends Controller
         
         // Create Post
         $post = Post::find($id);
+        // Check user ID for ownership
+
+        if(auth()->user()->id !== $post->user_id){
+            return redirect('/posts')->with('error', 'That doest\'t belong to you');
+        }
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
@@ -131,6 +151,11 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        // Check user ID for ownership
+
+        if(auth()->user()->id !== $post->user_id){
+            return redirect('/posts')->with('error', 'That doest\'t belong to you');
+        }
         $post->delete();
         return redirect('/posts')->with('success', 'Post Deleted');
     }
