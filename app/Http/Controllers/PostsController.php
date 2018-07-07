@@ -67,13 +67,37 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        // Handle file upload
+        if($request->hasFile('cover_image')){
+            // Get filename with extention
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalImage();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just extension
+            $extension = $request->file('cover_image')->getOriginalClientExtension();
+            // Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            // Images stored in web-inaccessable folder /storage/app/public
+            // Need to create symlink to public folder
+            // php artisan storage:link
+
+        }else{
+            // Set default image value
+            $fileNameToStore = 'noimage.jpg';
+        }
         
         // Create Post
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
+        $post->cover_image = $path;
+
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
