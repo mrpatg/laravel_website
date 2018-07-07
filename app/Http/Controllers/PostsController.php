@@ -185,8 +185,8 @@ class PostsController extends Controller
         if($request->hasFile('cover_image')){
             // Delete old image
             Storage::delete('public/cover_images/'.$post->cover_image);
-            $post->cover_image = $fileNameToStore;
         }
+        $post->cover_image = $fileNameToStore;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Updated');
