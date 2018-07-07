@@ -150,6 +150,24 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
         ]);
+
+        // Handle file upload
+        if($request->hasFile('cover_image')){
+            // Get filename with extention
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            // Images stored in web-inaccessable folder /storage/app/public
+            // Need to create symlink to public folder
+            // php artisan storage:link
+
+        }
         
         // Create Post
         $post = Post::find($id);
@@ -160,6 +178,9 @@ class PostsController extends Controller
         }
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        if($request->hasFile('cover_image')){
+            $post->cover_image = $fileNameToStore;
+        }
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Updated');
