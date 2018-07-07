@@ -168,6 +168,9 @@ class PostsController extends Controller
             // Need to create symlink to public folder
             // php artisan storage:link
 
+        }else{
+            // Set default image value
+            $fileNameToStore = 'noimage.jpg';
         }
         
         // Create Post
